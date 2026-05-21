@@ -1,0 +1,1035 @@
+/* Visibility helpers que el CSS legacy resolvía */
+.logo-responsive,
+#avaya-nav-responsive {
+  display: none;
+}
+
+@media (max-width: 1199.98px) {
+  .logo-responsive {
+    display: block;
+    max-width: 200px;
+    margin: 0 auto var(--space-4);
+  }
+
+  /* Navbar mobile fijo arriba: ocupa todo el ancho, fondo blanco
+     translúcido y sombra suave, igual que el header desktop scrolled. */
+  #avaya-nav-responsive {
+    display: flex;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    width: 100%;
+    z-index: var(--z-header);
+    padding: var(--space-3) var(--space-4);
+    background-color: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(10px);
+    box-shadow: var(--shadow-sm);
+  }
+  #avaya-nav-responsive .navegation_content {
+    padding: 0;
+  }
+  /* Menu desplegado: tanto el logo (a > img) como la lista de links
+     se centran horizontalmente. */
+  #avaya-nav-responsive .avaya-nav-container {
+    align-items: center;
+    text-align: center;
+  }
+  #avaya-nav-responsive .avaya-nav-container > a {
+    display: block;
+    margin: 0 auto;
+  }
+  /* El <img> que también lleva .header__logo no debe heredar el fixed
+     size del logo desktop (220×60 con text-indent). Anulamos lo conflictivo. */
+  #avaya-nav-responsive .header__logo {
+    width: auto;
+    height: 48px;
+    background-image: none;
+    text-indent: 0;
+    flex: 0 0 auto;
+    margin: 0 auto;
+  }
+  #avaya-nav-responsive .navbar-nav {
+    align-items: center;
+    width: 100%;
+    padding: var(--space-3) 0 0;
+    gap: var(--space-2);
+    text-align: center;
+  }
+  #avaya-nav-responsive .navbar-nav .nav-item {
+    width: 100%;
+    text-align: center;
+  }
+  #avaya-nav-responsive .navbar-nav .nav-item a {
+    display: block;
+    padding: var(--space-2) 0;
+    color: var(--color-denim);
+    font-weight: var(--font-weight-medium);
+    text-decoration: none;
+    text-transform: uppercase;
+    letter-spacing: 0.02em;
+    font-size: 0.9rem;
+    text-align: center;
+  }
+
+  /* Empuja el contenido para que no quede tapado por el navbar fijo */
+  .horizontal-scroll,
+  .horizontal-scroll__track {
+    padding-top: var(--space-7);
+  }
+}
+
+/* HOME — layout dos columnas */
+.section--home .content,
+.section--home .row.content-height {
+  height: 100%;
+  margin: 0;
+}
+
+.section--home .home-left {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: var(--space-10) var(--space-9) var(--space-7);
+  background-image: url('https://images.news.avaya.com/EloquaImages/clients/AvayaInc/%7B04195bbf-55f7-4c50-92bb-1c1c8aca0a06%7D_brush-red-home.png');
+  background-repeat: no-repeat;
+  background-position: left center;
+  background-size: cover;
+}
+
+.section--home .home-left__logistic-data {
+  margin-top: var(--space-10);
+}
+
+.section--home .home-left__logistic-data h4 {
+  color: var(--color-neutral-0);
+  font-size: var(--font-size-2xl);
+  margin: 0;
+}
+
+.section--home .home-left__logistic-data h4:nth-of-type(2) {
+  font-weight: var(--font-weight-light);
+}
+
+.section--home .home-slogan {
+  max-width: 380px;
+  height: auto;
+}
+
+.section--home .home-right {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--space-10) 0 var(--space-7);
+  overflow: hidden;
+}
+
+.section--home .home-right__hero-img,
+.section--home .home-right__hero-img.hero-home {
+  position: absolute;
+  right: -40px;
+  bottom: 0;
+  width: auto;
+  /* La imagen no puede crecer más allá del 50% del contenedor (home-right),
+     para dejar libre la mitad izquierda donde vive el bloque THANK YOU. */
+  max-width: min(780px, 50%);
+  max-height: 95%;
+  height: auto;
+  pointer-events: none;
+}
+
+/* Desktop: el bloque "THANK YOU" + texto + botón vive en la mitad izquierda
+   de .home-right, y la imagen del hombre en la mitad derecha. Antes el
+   wrapper se centraba (justify-content: center) y el hero absolute lo
+   tapaba al ser de 780px fijo. */
+@media (min-width: 1200px) {
+  .section--home .home-right {
+    justify-content: flex-start;
+  }
+  .section--home .home-right > div {
+    width: 50%;
+    max-width: 50%;
+    flex: 0 0 50%;
+    padding-right: var(--space-5);
+  }
+  /* Anula el col-xl-7 (58%) interno para que .agenda-1-left use todo el
+     ancho del wrapper de 50% — si no, el texto queda ridículamente angosto. */
+  .section--home .home-right .agenda-1-left {
+    width: 100%;
+    max-width: 100%;
+    flex: 0 0 100%;
+  }
+}
+
+.section--home .virtual-title img {
+  max-width: 480px;
+  height: auto;
+}
+
+.section--home .cobrand-container { margin-top: auto; }
+.section--home .cobrand-home { max-width: 290px; height: auto; }
+
+.speakers-title,
+.text-denim { color: var(--color-denim); }
+.text-black { color: var(--color-neutral-1000); }
+
+/* ABOUT / WHY ATTEND */
+.section--about .why-attend-headline {
+  max-width: 600px;
+  height: auto;
+  display: block;
+  margin: 0 auto;
+}
+
+/* El bloque (headline + 3 tarjetas) se centra vertical y
+   horizontalmente dentro de la sección. */
+#about-section .content,
+#about-section .content-height {
+  height: 100%;
+}
+
+#about-section .why-attend-container {
+  margin-bottom: var(--space-6);
+}
+
+/* Cada tarjeta: imagen + título + texto, todo centrado en columna. */
+#about-section .box-attend {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+#about-section .about-img {
+  margin-bottom: var(--space-5);
+}
+
+/* Imágenes con caja uniforme: las 3 tarjetas quedan alineadas y la
+   imagen centrada respecto de su texto. */
+.section--about .why-attend-img img,
+.section--about .about-img img {
+  width: 240px;
+  height: 190px;
+  object-fit: contain;
+}
+
+/* AGENDA */
+.agenda-img-desktop { display: block; }
+.agenda-img-mobile { display: none; }
+
+@media (max-width: 1199.98px) {
+  .agenda-img-desktop { display: none; }
+  .agenda-img-mobile { display: block; }
+}
+
+.section--agenda .agenda-title img {
+  max-width: 380px;
+  height: auto;
+}
+
+.section--agenda img[src*="agenda-at-glance"] {
+  max-width: 520px;
+  height: auto;
+  margin-bottom: var(--space-7);
+}
+
+.section--agenda .agenda-text p {
+  margin-bottom: var(--space-7);
+}
+
+.section--agenda img[src*="speaker-headline"],
+.section--agenda img[src*="agenda-headline"] {
+  max-width: 360px;
+  height: auto;
+}
+
+.section--agenda .woman-agenda {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  margin: 0 auto;
+  max-width: 240px;
+  max-height: 65%;
+  width: auto;
+  height: auto;
+}
+
+.section--agenda .agenda-horario {
+  max-width: 480px;
+  height: auto;
+}
+
+.section--agenda .agenda-row {
+  height: 100%;
+  align-items: stretch;
+}
+
+.section--agenda .agenda-1-left {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.section--agenda .agenda-right {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  justify-content: flex-end;
+  min-height: 100vh;
+  padding: 0;
+  overflow: hidden;
+}
+
+/* Mismo tratamiento que las fotos de Featured Guests: tope de ancho y
+   alto automático, en vez de forzar 100vh de alto. */
+.section--agenda .agenda-hero-image {
+  max-width: 740px;
+  height: auto;
+  display: block;
+}
+
+.section--agenda .exclamation-agenda {
+  position: absolute;
+  top: -32px;
+  right: -16px;
+  width: 50px;
+  height: auto;
+}
+
+/* FEATURED GUESTS — burbuja de diálogo con la cita del speaker.
+   Se ancla a la columna de la foto y se ubica arriba a la derecha,
+   superpuesta sobre la imagen, despejada del header. */
+#speakers-section .agenda-right {
+  position: relative;
+}
+
+#speakers-section .speech-bubble {
+  position: absolute;
+  top: calc(var(--layout-header-height) + var(--space-5));
+  right: var(--space-9);
+  z-index: var(--z-base);
+}
+
+/* Las fotos solo traen .img-fluid, así que llenaban toda la columna.
+   Se les pone un tope de ancho para reducirlas. */
+#speakers-section .speaker-hero {
+  max-width: 840px;
+  height: auto;
+  margin-left: auto;
+  /* La foto se dibuja por encima de la burbuja de diálogo. */
+  position: relative;
+  z-index: calc(var(--z-base) + 1);
+}
+
+@media (max-width: 1199.98px) {
+  #speakers-section .speech-bubble {
+    position: static;
+    margin: 0 auto var(--space-6);
+  }
+}
+
+
+
+/* SPEAKERS / AVAYA SPEAKERS — todos los speakers visibles a la vez:
+   Alan Masarek destacado arriba y el resto en una grilla debajo. Todo
+   se compacta para que entre en la sección de 100vh. */
+.section--speakers .host-speakers__title {
+  max-width: 380px;
+  height: auto;
+  display: block;
+  margin: 0 auto;
+}
+
+#avaya-speakers-section .content,
+#avaya-speakers-section .content-height {
+  height: 100%;
+}
+
+#avaya-speakers-section .box-attend {
+  text-align: center;
+}
+
+#avaya-speakers-section .about-left {
+  padding-top: var(--space-4);
+  padding-bottom: var(--space-4);
+}
+
+#avaya-speakers-section .host-speakers__text p {
+  margin-bottom: var(--space-2);
+  font-size: var(--font-size-sm);
+}
+
+.section--speakers .wit-title { max-width: 420px; }
+
+#avaya-speakers-section .carousel-container {
+  margin-top: var(--space-4);
+}
+
+/* Grilla con el resto de speakers, todos visibles a la vez */
+.avaya-speakers-grid {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: var(--space-3) var(--space-5);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.avaya-speakers-grid .speakers-li {
+  width: 200px;
+}
+
+.speakers-li.speakers-li--hidden {
+  display: none;
+}
+
+/* Caja cuadrada uniforme: todas las fotos ocupan lo mismo, así los
+   nombres y botones de las tarjetas quedan alineados. */
+.section--speakers .speakers-img {
+  width: 180px;
+  height: 180px;
+  object-fit: contain;
+  /* La foto se apoya en el borde inferior de la caja: el espacio
+     sobrante queda arriba y no entre la foto y el nombre. */
+  object-position: bottom;
+  margin: 0 auto;
+}
+
+#avaya-speakers-section .avaya-speakers-text {
+  margin-top: var(--space-1);
+}
+
+#avaya-speakers-section .avaya-speakers-text h4 {
+  font-size: var(--font-size-base);
+}
+
+#avaya-speakers-section .avaya-speakers-text p {
+  margin-bottom: 0;
+  font-size: var(--font-size-xs);
+}
+
+/* El botón View Bio se empuja al fondo de la tarjeta para que quede
+   alineado entre todas, sin importar el largo del cargo. */
+#avaya-speakers-section .avaya-speaker-modal {
+  margin-top: auto;
+  padding-top: var(--space-3);
+}
+
+/* La imagen "View Bio" trae width:150px inline; en la grilla se reduce. */
+#avaya-speakers-section .avaya-speaker-modal img {
+  width: 96px !important;
+}
+
+.speakers-li {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+/* WIT */
+.wit-speakers .speakers-img { max-width: 220px; }
+
+/* La foto de la derecha — mismo tratamiento que las de Featured Guests. */
+#wit-section .speaker-hero {
+  max-width: 840px;
+  height: auto;
+  margin-left: auto;
+  position: relative;
+  z-index: calc(var(--z-base) + 1);
+}
+
+/* La columna alinea su contenido al fondo, para que la foto quede
+   pegada a la parte inferior de la sección. */
+#wit-section .agenda-right {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  min-height: 100vh;
+}
+
+#wit-section .wit-title {
+  max-width: 540px;
+  height: auto;
+}
+
+/* El bloque de la izquierda (headline + agenda + botón) se centra
+   verticalmente dentro de la sección. */
+#wit-section .agenda-1-left {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+@media (min-width: 1200px) {
+  #wit-section .agenda-1-left {
+    padding-bottom: 75px !important;
+  }
+}
+
+/* Píldora de fecha: fondo de trazo de pincel rojo (lo genera JS en
+   applyBrushToDates), con el texto blanco encima. */
+#wit-section .agenda-time-container {
+  height: auto;
+  background-color: transparent;
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+/* KIDS / GIVE BACK */
+#kids-section .ways-to-give-back { max-width: 440px; height: auto; }
+#kids-section .kids-hero { max-width: 320px; height: auto; }
+#kids-section img[src*="charity-img"] {
+  max-width: 380px;
+  height: auto;
+}
+#kids-section .about-img img {
+  width: auto;
+  height: auto;
+  object-fit: initial;
+}
+
+@media (min-width: 1200px) {
+  #kids-section .row.content-height {
+    align-items: stretch !important;
+  }
+  #kids-section .sponsor-1-left {
+    padding-top: var(--space-4) !important;
+    padding-bottom: 75px !important;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start !important;
+  }
+  #kids-section .sponsor-right {
+    padding-top: var(--space-4) !important;
+    padding-bottom: 75px !important;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start !important;
+  }
+  #kids-section .ways-to-give-back {
+    max-width: 310px !important;
+    margin-bottom: var(--space-3) !important;
+  }
+  #kids-section .sponsors-text1 {
+    font-size: var(--font-size-sm);
+    line-height: 1.45;
+    margin-bottom: var(--space-3) !important;
+  }
+  #kids-section img[src*="charity-img"] {
+    max-width: 150px !important;
+    height: auto;
+  }
+  #kids-section .about-img.about-img--right {
+    display: flex !important;
+    flex-direction: row !important;
+    align-items: center !important;
+    gap: var(--space-4) !important;
+  }
+  #kids-section .about-img.about-img--right p {
+    font-size: var(--font-size-sm);
+    line-height: 1.4;
+    margin-bottom: var(--space-2) !important;
+  }
+  #kids-section .button--red {
+    padding: var(--space-2) var(--space-5) !important;
+    font-size: var(--font-size-sm) !important;
+    margin-bottom: var(--space-2) !important;
+  }
+  #kids-section img[src*="give-kids"] {
+    max-width: 170px !important;
+    height: auto !important;
+  }
+  #kids-section .kids-hero {
+    max-width: 230px !important;
+    margin-bottom: var(--space-3) !important;
+  }
+  #kids-section .sponsors-text2 {
+    font-size: var(--font-size-sm);
+    line-height: 1.45;
+    margin-bottom: var(--space-2) !important;
+  }
+}
+
+/* Estilos extraídos de secciones específicas de la home */
+.virtual-section {
+  background-image: url('https://images.news.avaya.com/EloquaImages/clients/AvayaInc/%7B4ff5eb67-edbf-4a0a-a016-b5f0db4268d0%7D_virtual-bg-2.png');
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-color: rgba(247, 224, 227, 1);
+}
+
+.virtual-title img {
+  max-width: 380px;
+}
+
+@media (max-width: 1199.98px) {
+  .virtual-title img {
+    max-width: 280px;
+  }
+
+  .virtual-section {
+    background-image: none;
+  }
+
+  .virtual-row {
+    flex-direction: column-reverse;
+  }
+}
+
+.virtual-hero__img {
+  max-width: 90%;
+}
+
+.virtual-time-container {
+  background-image: url('https://images.news.avaya.com/EloquaImages/clients/AvayaInc/%7Bc57f3bf7-f33e-4bd3-af10-6870a0c5296a%7D_button-white.png');
+}
+
+.wit-speakers {
+  background-color: var(--color-neutral-0);
+}
+
+@media (max-width: 991.98px) {
+  .wit-title {
+    width: 100%;
+    max-width: 100% !important;
+  }
+}
+
+.agenda-time-container {
+  flex-direction: column;
+  height: 40px;
+  background-size: cover;
+  padding: 28px 32px 30px !important;
+  width: 340px;
+}
+
+.text-wit-date {
+  flex: 1;
+}
+
+.agenda-text p {
+  flex: 1;
+}
+
+.wit-hero {
+  max-width: 90%;
+}
+
+@media (max-width: 1199.98px) {
+  .wit-hero {
+    left: 0;
+  }
+}
+
+.kids-hero {
+  width: 320px;
+}
+
+.ways-to-give-back {
+  max-width: 50%;
+}
+
+@media (max-width: 991.98px) {
+  .ways-to-give-back {
+    max-width: 90%;
+  }
+}
+
+@media (max-width: 1199.98px) {
+  #speakers-section .speaker-hero,
+  #wit-section .speaker-hero {
+    max-width: 90% !important;
+    margin: 0 auto !important;
+    display: block !important;
+  }
+}
+
+/* ─────────────────────────────────────────────────────────────────
+   MOBILE RESPONSIVE FIXES (≤ 1199.98px)
+   El layout horizontal se aplana a vertical y los paddings/tamaños
+   de imagen del desktop son demasiado grandes para 390-414px.
+   ───────────────────────────────────────────────────────────────── */
+@media (max-width: 1199.98px) {
+  /* HOME — sección de portada apilada */
+  .section--home {
+    background-position: center top;
+  }
+
+  .section--home .home-left {
+    padding: var(--space-7) var(--space-4) var(--space-5);
+    /* El brush rojo de fondo se vería rotado al ancho completo en mobile;
+       se hace que cubra solo la parte alta para no comer toda la columna. */
+    background-position: left top;
+    background-size: 200% auto;
+  }
+
+  .section--home .home-left__logistic-data {
+    margin-top: var(--space-4);
+    text-align: center;
+  }
+
+  .section--home .home-left__logistic-data h4 {
+    font-size: var(--font-size-lg);
+  }
+
+  .section--home .home-slogan {
+    max-width: 240px;
+  }
+
+  .section--home .cobrand-container {
+    margin-top: var(--space-5);
+    text-align: center;
+  }
+  .section--home .cobrand-home {
+    max-width: 220px;
+    margin: 0 auto;
+  }
+
+  /* La columna derecha en mobile: stack vertical (texto arriba, foto abajo).
+     Por defecto .home-right es flex-row → texto y hero quedan lado a lado
+     y el texto se aplasta. Forzamos column para que cada uno use el ancho
+     completo. */
+  .section--home .home-right {
+    flex-direction: column;
+    align-items: stretch;
+    justify-content: flex-start;
+    width: 100%;
+    padding: var(--space-4) var(--space-3) var(--space-5);
+    overflow: visible;
+  }
+
+  .section--home .home-right > div {
+    width: 100%;
+    padding: 0 !important;
+  }
+
+  .section--home .home-right .agenda-1-left {
+    width: 100%;
+    max-width: 100%;
+    padding: var(--space-4) !important;
+    text-align: center;
+  }
+
+  .section--home .home-right .pb-0.p-3 {
+    padding: 0 !important;
+    align-items: center;
+  }
+
+  /* "THANK YOU" — la imagen del título no debe exceder el ancho del
+     contenedor de texto. */
+  .section--home .virtual-title {
+    text-align: center;
+  }
+  .section--home .virtual-title img {
+    max-width: 80%;
+    margin: 0 auto;
+  }
+
+  /* Botón "Register for On-demand Access" — centrarlo y evitar que el
+     min-width: 160px lo desborde si el contenedor es chico. */
+  .section--home .agenda-text .button {
+    display: flex;
+    width: fit-content;
+    max-width: 100%;
+    margin: 0 auto;
+  }
+
+  /* El hero principal en mobile pasa a flujo normal y se centra,
+     evitando el right: -40px que generaba scroll lateral. */
+  .section--home .home-right__hero-img,
+  .section--home .home-right__hero-img.hero-home {
+    position: relative;
+    right: auto;
+    bottom: auto;
+    max-width: 80%;
+    max-height: none;
+    margin: var(--space-5) auto 0;
+  }
+
+  /* ABOUT / WHY ATTEND — reducir padding y tamaño de imágenes */
+  .section--about .content {
+    padding: var(--space-5) var(--space-3) !important;
+  }
+  .section--about .about-left {
+    padding: var(--space-5) var(--space-3) !important;
+  }
+  .section--about .why-attend-headline {
+    max-width: 90%;
+  }
+  .section--about .box-attend {
+    padding: var(--space-5) var(--space-3) 0 !important;
+  }
+  .section--about .why-attend-img img,
+  .section--about .about-img img {
+    width: 200px;
+    height: 160px;
+  }
+  .section--about .why-attend__title {
+    font-size: var(--font-size-lg) !important;
+  }
+
+  /* AGENDA — quitar el px-5 fijo y centrar contenidos */
+  .section--agenda .content {
+    padding: 0 !important;
+  }
+  .section--agenda .agenda-1-left {
+    padding: var(--space-5) var(--space-4) !important;
+  }
+  .section--agenda .agenda-1-left .pb-0,
+  .section--agenda .agenda-1-left .pb-0.px-5 {
+    padding: 0 !important;
+  }
+  .section--agenda .agenda-title {
+    padding-top: 0 !important;
+    text-align: center;
+  }
+  .section--agenda .agenda-title img {
+    max-width: 90%;
+    margin: 0 auto;
+  }
+  .section--agenda img[src*="agenda-at-glance"] {
+    max-width: 90%;
+    margin: 0 auto var(--space-5);
+  }
+  .section--agenda .agenda-text {
+    margin-bottom: var(--space-5) !important;
+  }
+  .section--agenda .agenda-text p {
+    margin-bottom: var(--space-4);
+    text-align: center;
+  }
+  .section--agenda .agenda-right {
+    padding: 0 var(--space-3) var(--space-5) !important;
+    min-height: 0;
+    align-items: center;
+    justify-content: center;
+  }
+  .section--agenda .agenda-hero-image {
+    max-width: 90%;
+    margin: 0 auto;
+  }
+  .section--agenda .agenda-img-mobile figure {
+    padding: 0 var(--space-3) var(--space-5) !important;
+  }
+
+  /* SPEAKERS (featured guests carousel) — texto y burbuja respiran */
+  #speakers-section .agenda-1-left,
+  #speakers-section .guests__description {
+    padding: var(--space-5) var(--space-4) !important;
+  }
+  #speakers-section .guests__description .pb-0,
+  #speakers-section .guests__description .pb-0.px-5 {
+    padding: 0 !important;
+  }
+  #speakers-section .agenda-title {
+    padding-top: 0 !important;
+    margin-bottom: var(--space-5) !important;
+    text-align: center;
+  }
+  #speakers-section .agenda-title img {
+    max-width: 90%;
+    margin: 0 auto;
+  }
+  #speakers-section .speakers-title {
+    font-size: var(--font-size-lg) !important;
+  }
+  #speakers-section .agenda-right {
+    padding: 0 var(--space-3) var(--space-5) !important;
+  }
+  #speakers-section .speech-bubble {
+    max-width: 280px;
+    margin: 0 auto var(--space-4) !important;
+  }
+  /* Indicadores del carousel — empujarlos abajo del contenido */
+  #speakers-section .carousel-indicators {
+    bottom: var(--space-3);
+    margin-bottom: 0;
+  }
+
+  /* AVAYA / KEYNOTE SPEAKERS — grilla compacta */
+  #avaya-speakers-section .content {
+    padding: var(--space-5) var(--space-4) !important;
+  }
+  #avaya-speakers-section .about-left {
+    padding: var(--space-5) var(--space-4) !important;
+  }
+  #avaya-speakers-section .box-attend {
+    padding: var(--space-4) var(--space-3) !important;
+  }
+  #avaya-speakers-section .host-speakers__title {
+    max-width: 90%;
+  }
+  #avaya-speakers-section .host-speakers__text,
+  #avaya-speakers-section .host-speakers__text p {
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+  }
+  #avaya-speakers-section .about-text {
+    padding-left: var(--space-3) !important;
+    padding-right: var(--space-3) !important;
+  }
+
+  /* Grid de keynote speakers: cards más anchas (aprovechan el espacio
+     lateral que hoy queda vacío) para que el cargo no rompa en 7 líneas. */
+  #avaya-speakers-section .carousel-container {
+    width: 100%;
+    padding: 0;
+  }
+  .avaya-speakers-grid {
+    gap: var(--space-6) var(--space-4);
+    padding: 0 !important;
+  }
+  .avaya-speakers-grid .speakers-li {
+    /* Cada card ocupa la mitad del ancho disponible menos medio gap.
+       Sin gap horizontal de 16px → cada card ≈ (100% - 16px) / 2. */
+    flex: 0 0 calc(50% - var(--space-2));
+    width: auto;
+    max-width: 220px;
+    padding-left: var(--space-2);
+    padding-right: var(--space-2);
+  }
+  .section--speakers .speakers-img {
+    width: 140px;
+    height: 140px;
+  }
+  #avaya-speakers-section .avaya-speakers-text p {
+    line-height: var(--line-height-base);
+  }
+
+  /* WIT — mismo tratamiento de paddings */
+  .wit-speakers .content {
+    padding: 0 !important;
+  }
+  #wit-section .agenda-1-left {
+    padding: var(--space-5) var(--space-4) !important;
+  }
+  #wit-section .agenda-1-left .pb-0,
+  #wit-section .agenda-1-left .pb-0.px-5 {
+    padding: 0 !important;
+  }
+  #wit-section .agenda-title {
+    padding-top: 0 !important;
+    padding-left: var(--space-5) !important;
+    padding-right: var(--space-5) !important;
+    text-align: center;
+  }
+  #wit-section .wit-title {
+    max-width: 100%;
+    margin: 0 auto;
+  }
+  #wit-section .agenda-right {
+    min-height: 0;
+    padding: 0 !important;
+  }
+  #wit-section .speaker-hero,
+  #wit-section .wit-hero {
+    max-width: 90% !important;
+    margin: 0 auto !important;
+    position: relative;
+  }
+
+  /* Pildora de fecha WIT — no puede ser 340px en un viewport de 390px */
+  .agenda-time-container {
+    width: auto !important;
+    max-width: 90%;
+    padding: var(--space-4) var(--space-5) !important;
+    margin: 0 auto;
+  }
+
+  /* Botones "Join In" / "See Full Agenda": .button es inline-flex,
+     así que mx-auto de Bootstrap no centra. Lo forzamos a flex con
+     margin auto y ancho ajustado al contenido. */
+  .full-agenda-btn {
+    display: flex;
+    width: fit-content;
+    margin-left: auto !important;
+    margin-right: auto !important;
+  }
+
+  /* ── Padding lateral garantizado en cajas de texto ──────────────────
+     Cualquier contenedor de texto recibe al menos var(--space-5) (24px)
+     de respiración lateral en mobile, independientemente del padding
+     que tenga la columna que lo envuelva. Evita el efecto "pegado al
+     borde" del viewport. */
+  .agenda-text,
+  .about-text,
+  .host-speakers__text,
+  .avaya-speakers-text,
+  .home-left__logistic-data,
+  .why-attend-container,
+  .why-attend-text,
+  .speakers-title,
+  .guests__description .pb-0,
+  .agenda-1-left .pb-0,
+  .agenda-1-left .pb-0.px-5 {
+    padding-left: var(--space-5) !important;
+    padding-right: var(--space-5) !important;
+  }
+
+  /* Speech bubble se centra y respeta el padding interno del SVG.
+     Tampoco debe pegarse al borde lateral de la sección. */
+  #speakers-section .speech-bubble {
+    margin-left: var(--space-5) !important;
+    margin-right: var(--space-5) !important;
+    max-width: calc(100% - var(--space-7));
+  }
+
+  /* En las cards de Keynote Speakers el texto está en la propia <li>;
+     se le da padding interno para que el nombre/cargo no toque el borde
+     visual de la grilla cuando la card está al filo del viewport. */
+  #avaya-speakers-section .speakers-li {
+    padding-left: var(--space-3);
+    padding-right: var(--space-3);
+  }
+}
+
+/* Mobile chico — reducir un poco más para 390-414px */
+@media (max-width: 575.98px) {
+  .section--home .home-left__logistic-data h4 {
+    font-size: var(--font-size-md);
+  }
+  .section--home .home-slogan {
+    max-width: 200px;
+  }
+  .section--about .why-attend-img img,
+  .section--about .about-img img {
+    width: 170px;
+    height: 140px;
+  }
+  .avaya-speakers-grid {
+    gap: var(--space-5) var(--space-3);
+  }
+  .avaya-speakers-grid .speakers-li {
+    flex: 0 0 calc(50% - var(--space-2));
+    max-width: none;
+  }
+  .section--speakers .speakers-img {
+    width: 130px;
+    height: 130px;
+  }
+  #speakers-section .speakers-title {
+    font-size: var(--font-size-md) !important;
+  }
+  /* Bootstrap fs-4 = 1.5rem; en mobile reducir para que no haga overflow */
+  .section--agenda .agenda-text .fs-4,
+  #speakers-section .fs-4,
+  #wit-section .fs-4 {
+    font-size: var(--font-size-lg) !important;
+  }
+  .section--agenda .agenda-text .fs-5,
+  #speakers-section .fs-5,
+  .section--home .fs-5 {
+    font-size: var(--font-size-base) !important;
+  }
+  .section--home .virtual-title img {
+    max-width: 80%;
+  }
+}
+
+
+

@@ -1,0 +1,40 @@
+html,
+body {
+  overflow-x: hidden;
+  max-width: 100%;
+}
+
+body {
+  font-family: var(--font-family-base);
+  font-size: var(--font-size-base);
+  font-weight: var(--font-weight-light);
+  line-height: var(--line-height-base);
+  color: var(--color-text-muted);
+  background-color: var(--color-bg-page);
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+/* Defensiva: ningún contenido (imágenes, embeds, palabras largas, URLs)
+   debe ampliar el ancho del viewport en mobile. */
+img,
+video,
+iframe {
+  max-width: 100%;
+  height: auto;
+}
+
+p,
+h1, h2, h3, h4, h5, h6 {
+  overflow-wrap: anywhere;
+  word-break: break-word;
+}
+
+body::-webkit-scrollbar {
+  display: none;
+}
+
+p {
+  font-size: var(--font-size-base);
+  line-height: var(--line-height-relaxed);
+}

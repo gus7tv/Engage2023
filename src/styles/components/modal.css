@@ -1,0 +1,108 @@
+/* Modales (speakers y demás). El markup es Bootstrap; acá se corrige
+   lo que el CSS legacy dejaba desfasado. */
+
+/* La X va fija en la esquina superior derecha. Sin esto queda apilada
+   en medio del header, que es flex-direction: column. */
+.modal-content .btn-close {
+  position: absolute;
+  top: var(--space-4);
+  right: var(--space-4);
+  z-index: var(--z-base);
+}
+
+/* Sin líneas: el header y el footer de Bootstrap traen border, y el
+   markup mete un <hr> en el header. */
+.modal-header {
+  border-bottom: 0;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  gap: 12px;
+}
+
+.modal-footer {
+  border-top: 0;
+  justify-content: center;
+}
+
+.modal hr {
+  display: none;
+}
+
+/* La imagen del header, centrada. */
+.modal-header img {
+  display: block;
+  margin: 0 auto;
+}
+
+/* Estilos específicos del modal de bienvenida y detalles */
+.view-details {
+  position: absolute;
+  width: 120px;
+  bottom: 16px;
+  left: 8%;
+}
+
+button {
+  outline: 0;
+  border: 0;
+}
+
+.modal-backdrop {
+  background-color: var(--bs-backdrop-bg);
+  opacity: 0.5 !important;
+}
+
+.modal .button {
+  background-color: transparent;
+}
+
+.modal {
+  --bs-modal-width: 600px;
+  margin: 0 auto;
+  background-color: transparent;
+  box-shadow: none;
+  max-width: unset !important;
+}
+
+@media (max-width: 1368.98px) {
+  .map {
+    height: 220px;
+  }
+  .w-40 {
+    width: 25% !important;
+  }
+}
+
+/* Mobile: el modal no puede ser de 600px en un viewport de 390px.
+   Se ajusta al ancho disponible con un pequeño margen lateral, y se
+   reduce el padding de header/body/footer para que el contenido respire. */
+@media (max-width: 767.98px) {
+  .modal {
+    --bs-modal-width: 100%;
+    padding: 0 var(--space-3);
+  }
+  .modal-dialog {
+    margin: var(--space-4) auto;
+    max-width: calc(100% - var(--space-4));
+  }
+  .modal-header,
+  .modal-body,
+  .modal-footer {
+    padding-left: var(--space-4) !important;
+    padding-right: var(--space-4) !important;
+  }
+  .modal-header {
+    padding-top: var(--space-7) !important;
+  }
+  .modal-content .btn-close {
+    top: var(--space-3);
+    right: var(--space-3);
+  }
+  .modal-header img.hero-avaya-img {
+    width: 60% !important;
+    max-width: 180px;
+  }
+}
+

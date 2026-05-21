@@ -1,0 +1,126 @@
+.section {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  overflow: hidden;
+  /* Crea un stacking context propio: confina el z-index del brush
+     (::before, z-index -1) a la sección — sobre su fondo, bajo su
+     contenido. Sin esto el brush cae detrás de las demás secciones. */
+  isolation: isolate;
+}
+
+.section--home {
+  background-color: var(--color-accent-blush);
+  background-image: url('https://images.news.avaya.com/EloquaImages/clients/AvayaInc/%7B031e55e4-9be3-4f07-b96c-8fe85582e732%7D_home-bg.jpg');
+  background-size: cover;
+  background-position: center;
+}
+
+.section--about {
+  background-color: var(--color-teal-dark);
+}
+
+.section--agenda {
+  background-color: var(--color-accent-sand);
+}
+
+/* Featured Guests (sección del chef José Andrés): comparte la clase
+   .section--agenda con la sección Agenda, pero su contenido es texto
+   blanco — necesita un fondo azul para que sea legible. */
+#speakers-section {
+  background-color: var(--color-ocean);
+}
+
+.section--speakers {
+  /* Gris sólido — el mismo que pinta el brush de la sección anterior. */
+  background-color: var(--color-neutral-200);
+}
+
+.section--sponsor {
+  background-color: var(--color-denim);
+}
+
+.section__marker {
+  position: absolute;
+  bottom: 20%;
+  opacity: 0;
+  pointer-events: none;
+  z-index: var(--z-base);
+}
+
+/* ── Brush de transición ──────────────────────────────────────────────
+   Cada sección (menos la home) lleva un trazo de pincel en el borde
+   derecho pintado con el color de la SECCIÓN SIGUIENTE. Al avanzar el
+   scroll horizontal, ese color "anticipa" la próxima sección y la
+   transición se siente continua.
+   brush-1.svg se usa como máscara: la forma sale del SVG y el color de
+   `background-color`, así un único archivo sirve para todos los colores.
+   z-index -1 lo deja sobre el fondo de la sección pero detrás del
+   contenido. */
+.section__brush {
+  position: absolute;
+  top: -60px;
+  right: -30%;
+  width: 48%;
+  height: calc(100% + 120px);
+  z-index: -1;
+  pointer-events: none;
+  background-color: var(--brush-color, transparent);
+  -webkit-mask: url('/img/brush-1.svg') no-repeat right center / auto 112%, linear-gradient(to right, transparent 40%, #000 40%);
+  mask: url('/img/brush-1.svg') no-repeat right center / auto 112%, linear-gradient(to right, transparent 40%, #000 40%);
+  transform: rotate(3deg);
+  transform-origin: right center;
+  will-change: transform;
+}
+
+#home-section { --brush-color: var(--color-teal-dark); }         /* → about-section (teal) */
+#about-section { --brush-color: var(--color-accent-sand); }      /* → agenda */
+#agenda-section { --brush-color: var(--color-ocean); }           /* → featured guests */
+#speakers-section { --brush-color: var(--color-neutral-200); }   /* → keynote speakers */
+#avaya-speakers-section { --brush-color: var(--color-neutral-0); } /* → WIT */
+#wit-section { --brush-color: var(--color-red); }          /* → clone-home */
+
+@media (max-width: 1199.98px) {
+  .section {
+    height: auto;
+    /* overflow-x oculto para que el brush rotado y cualquier elemento
+       absoluto que sobresalga no genere scroll lateral. */
+    overflow-x: hidden;
+    overflow-y: visible;
+    position: relative;
+    width: 100%;
+  }
+
+  /* Decreasing z-indices for vertical stacking order so bottom brushes render on top of next section backgrounds */
+  #home-section { z-index: 6; }
+  #about-section { z-index: 5; }
+  #agenda-section { z-index: 4; }
+  #speakers-section { z-index: 3; }
+  #avaya-speakers-section { z-index: 2; }
+  #wit-section { z-index: 1; }
+
+  .section__brush {
+    display: block;
+    position: absolute;
+    top: auto;
+    bottom: -46vw;
+    left: 50%;
+    right: auto;
+    /* Pincel comprimido al ancho del viewport: el alto post-rotación
+       no debe exceder 100vw (si no, se sale por los lados). */
+    width: 60px;
+    height: 100vw;
+    max-height: 100vw;
+    transform: translate(-50%, 0) rotate(90deg);
+    transform-origin: center center;
+    z-index: 2;
+    will-change: auto;
+  }
+
+  /* Hide the last brush since there is no next section to transition to */
+  #wit-section .section__brush {
+    display: none;
+  }
+}
+
+

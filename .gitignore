@@ -1,0 +1,12 @@
+node_modules/
+dist/
+.vite/
+*.log
+.DS_Store
+Thumbs.db
+.env
+.env.local
+
+# Playwright MCP screenshots and cache
+.playwright-mcp/
+/*.png

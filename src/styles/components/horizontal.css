@@ -1,0 +1,39 @@
+.horizontal-scroll {
+  position: relative;
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+}
+
+.horizontal-scroll__track {
+  display: flex;
+  flex-wrap: nowrap;
+  width: max-content;
+  height: 100vh;
+  will-change: transform;
+}
+
+.horizontal-scroll__track > .section {
+  flex: 0 0 100vw;
+  width: 100vw;
+  height: 100vh;
+  scroll-snap-align: none;
+}
+
+@media (max-width: 1199.98px) {
+  .horizontal-scroll {
+    width: 100%;
+    height: auto;
+    overflow: visible;
+  }
+  .horizontal-scroll__track {
+    flex-direction: column;
+    width: 100%;
+    height: auto;
+  }
+  .horizontal-scroll__track > .section {
+    flex: 0 0 auto;
+    width: 100%;
+    height: auto;
+  }
+}

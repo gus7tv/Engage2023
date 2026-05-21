@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 360 1320" preserveAspectRatio="none">
+  <!-- Trazo de pincel vertical. La forma base es un blob curvado y el filtro
+       de turbulencia + desplazamiento le da los bordes deshilachados/bristle.
+       Pensado para usarse como mask-image: el color lo aporta el CSS. -->
+  <defs>
+    <filter id="bristle" x="-25%" y="-12%" width="150%" height="124%">
+      <feTurbulence type="fractalNoise" baseFrequency="0.002 0.008"
+                    numOctaves="2" seed="9" result="noise"/>
+      <feDisplacementMap in="SourceGraphic" in2="noise" scale="25"
+                         xChannelSelector="R" yChannelSelector="G"/>
+    </filter>
+  </defs>
+  <path filter="url(#bristle)" fill="#111111"
+        d="M150 36 C95 280 78 480 80 660 C82 880 110 1080 152 1284
+           L244 1278 C296 1060 304 840 298 640 C292 420 270 220 236 44 Z"/>
+</svg>

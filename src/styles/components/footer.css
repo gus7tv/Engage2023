@@ -1,0 +1,59 @@
+/* Footer del sitio — vive al pie de la última sección (Give Back).
+   En desktop se ancla al borde inferior; en mobile va en flujo normal.
+   Compacto: redes y copyright en una sola fila. */
+.footer {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: var(--z-base);
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-2) var(--space-7);
+  padding: var(--space-3) var(--space-6);
+  background-color: var(--color-bg-footer);
+}
+
+.footer__social {
+  display: flex;
+  gap: var(--space-4);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.footer__social-link {
+  display: block;
+  transition: var(--transition-transform);
+}
+
+.footer__social-link:hover {
+  transform: scale(1.15);
+}
+
+.footer__social-link img {
+  display: block;
+  width: 28px;
+  height: 28px;
+  object-fit: contain;
+}
+
+.footer__copy {
+  margin: 0;
+  color: var(--color-text-inverse);
+  font-size: var(--font-size-xs);
+  text-align: center;
+}
+
+@media (max-width: 1199.98px) {
+  .footer {
+    position: relative;
+    bottom: auto;
+    left: auto;
+    right: auto;
+    width: 100%;
+    z-index: 10;
+  }
+}

@@ -1,0 +1,47 @@
+/* Botón con forma "pincelada" — el background-image lo genera JS por botón
+   (cada uno tiene un path SVG único) en main.js applyBrushToButtons(). */
+
+.button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 160px;
+  min-height: 64px;
+  padding: var(--space-3) var(--space-5);
+  background-color: transparent;
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+  background-position: center center;
+  border: 0;
+  font-family: var(--font-family-base);
+  font-size: 1.2rem;
+  font-weight: var(--font-weight-bold);
+  line-height: 1;
+  letter-spacing: 0.02em;
+  color: var(--color-neutral-0);
+  text-decoration: none;
+  text-align: center;
+  cursor: pointer;
+  transition: var(--transition-transform);
+}
+
+.button:hover {
+  color: var(--color-neutral-0);
+  transform: scale(1.04);
+}
+
+.button--white {
+  color: var(--color-denim);
+}
+
+.button--white:hover {
+  color: var(--color-denim);
+}
+
+.button--ocean {
+  color: var(--color-neutral-0);
+}
+
+.button--ocean:hover {
+  color: var(--color-neutral-0);
+}

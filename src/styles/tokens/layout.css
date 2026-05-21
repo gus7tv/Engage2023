@@ -1,0 +1,32 @@
+:root {
+  --layout-header-height: 110px;
+  --layout-header-height-scrolled: 80px;
+  --layout-content-max-width: 1440px;
+  --layout-content-padding-x: var(--space-10);
+
+  --z-base: 1;
+  --z-scroll-icon: 90;
+  --z-header: 100;
+  --z-overlay: 200;
+  --z-modal: 300;
+
+  --bp-sm: 576px;
+  --bp-md: 768px;
+  --bp-lg: 992px;
+  --bp-xl: 1200px;
+  --bp-2xl: 1369px;
+  --bp-3xl: 1441px;
+  --bp-4xl: 1621px;
+}
+
+@media (max-width: 1199.98px) {
+  :root {
+    --layout-content-padding-x: var(--space-5);
+  }
+}
+
+@media (max-width: 575.98px) {
+  :root {
+    --layout-content-padding-x: var(--space-4);
+  }
+}

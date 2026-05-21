@@ -1,0 +1,135 @@
+/* Overrides puntuales del componente Splide. Las clases .splide__* son del
+   bundle de Splide; subimos especificidad con .splide para no usar !important. */
+.splide .splide__arrow {
+  background-color: transparent;
+}
+
+.splide .splide__arrow svg {
+  width: 2em;
+  height: 2em;
+  fill: var(--color-teal);
+}
+
+.splide .splide__arrow--prev { left: 4rem; }
+.splide .splide__arrow--next { right: 4rem; }
+
+@media (max-width: 1199.98px) {
+  .splide .splide__arrow--prev { left: 8rem; }
+  .splide .splide__arrow--next { right: 8rem; }
+}
+
+.splide .splide__pagination {
+  bottom: -1.2em;
+}
+
+.splide .splide__pagination__page {
+  background: var(--color-neutral-0);
+  height: 10px;
+  width: 10px;
+  margin: var(--space-1);
+}
+
+.splide .splide__pagination__page.is-active {
+  background-color: var(--color-teal);
+  opacity: 1;
+}
+
+/* Estilos de la sección de invitados destacados y carrusel Bootstrap */
+.enfasis-container {
+  background-image: url('https://images.news.avaya.com/EloquaImages/clients/AvayaInc/%7B0295d601-834e-4c73-8f96-f0742ed1429c%7D_enfasis.png');
+  background-size: cover;
+  background-repeat: no-repeat;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  max-width: 370px;
+  padding: 16px;
+}
+
+.modal-btn {
+  transition: all .5s ease;
+}
+
+.modal-btn:hover {
+  transform: scale(1.1);
+  transition: all .3s ease;
+}
+
+@media (max-width: 1199.98px) {
+  .enfasis-container {
+    margin: 40px 0;
+  }
+}
+
+.enfasis-text {
+  position: relative;
+  z-index: 2;
+  color: white;
+  margin-bottom: 2px;
+  padding: 4px;
+}
+
+.guest-quote {
+  position: absolute;
+  right: 0px;
+  bottom: 50%;
+}
+
+.carousel-item {
+  height: 100%;
+}
+
+.carousel {
+  height: 100%;
+}
+
+.carousel-inner {
+  height: 100%;
+}
+
+.carousel-control-next,
+.carousel-control-prev {
+  bottom: -20%;
+}
+
+.carousel-control-prev {
+  left: -5%;
+}
+
+.carousel-control-next {
+  right: -5%;
+}
+
+.carousel-indicators [data-bs-target] {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  margin-right: 6px;
+  margin-left: 6px;
+  opacity: 1;
+}
+
+.carousel-indicators .active {
+  background-color: #45a792;
+}
+
+@media (max-width: 1199.98px) {
+  .guest-quote {
+    position: relative;
+    bottom: 0;
+  }
+
+  .enfasis-container {
+    max-width: 100%;
+  }
+
+  .carousel-control-next,
+  .carousel-control-prev {
+    bottom: 50%;
+  }
+
+  .speaker-hero {
+    left: 24px;
+  }
+}
+
