@@ -130,12 +130,16 @@
   position: absolute;
   right: -40px;
   bottom: 0;
+  /* El PNG tiene resolución intrínseca chica y márgenes transparentes,
+     por eso a tamaño nativo el personaje se ve pequeño. Lo escalamos por
+     ALTURA (el personaje es vertical) y dejamos el ancho automático: así
+     conserva la proporción y NO se deforma. Sin max-width — recortar solo
+     el ancho con la altura fija era lo que lo estiraba. Lo que sobre por
+     arriba o por el costado lo recorta el overflow:hidden de .home-right. */
   width: auto;
-  /* La imagen no puede crecer más allá del 50% del contenedor (home-right),
-     para dejar libre la mitad izquierda donde vive el bloque THANK YOU. */
-  max-width: min(780px, 50%);
-  max-height: 95%;
-  height: auto;
+  height: 90%;
+  max-width: none;
+  max-height: none;
   pointer-events: none;
 }
 
@@ -159,6 +163,16 @@
     width: 100%;
     max-width: 100%;
     flex: 0 0 100%;
+  }
+}
+
+/* Laptops chicas (1200–1600px): el hero se escala por alto, así que en
+   pantallas más angostas el personaje quedaba desproporcionado frente a
+   la columna. Se reduce la altura en este rango. */
+@media (min-width: 1200px) and (max-width: 1600px) {
+  .section--home .home-right__hero-img,
+  .section--home .home-right__hero-img.hero-home {
+    height: 75%;
   }
 }
 
@@ -429,6 +443,51 @@
   align-items: center;
   justify-content: center;
   text-align: center;
+}
+
+/* Laptops chicas (1200–1600px): estas pantallas tienen poco alto, así que
+   el contenido de "Your Host & Speakers" no cabía en los 100vh de la
+   sección y el overflow:hidden recortaba la grilla por abajo. Se compacta
+   verticalmente: menos padding, imágenes y tipografía más chicas y gaps
+   reducidos, para que todo quepa sin recorte. */
+@media (min-width: 1200px) and (max-width: 1600px) {
+  #avaya-speakers-section .content {
+    padding: var(--space-3) var(--space-4) !important;
+  }
+  #avaya-speakers-section .about-left {
+    padding: var(--space-3) var(--space-4) !important;
+  }
+  #avaya-speakers-section .box-attend {
+    padding: var(--space-2) var(--space-3) !important;
+  }
+  #avaya-speakers-section .host-speakers__title {
+    max-width: 300px;
+  }
+  #avaya-speakers-section .about-text {
+    margin-top: var(--space-2) !important;
+  }
+  #avaya-speakers-section .host-speakers__text p {
+    margin-bottom: var(--space-1);
+  }
+  #avaya-speakers-section .carousel-container {
+    margin-top: var(--space-2);
+  }
+  .avaya-speakers-grid {
+    gap: var(--space-2) var(--space-4);
+  }
+  .section--speakers .speakers-img {
+    width: 120px;
+    height: 120px;
+  }
+  #avaya-speakers-section .avaya-speakers-text {
+    margin-top: 0;
+  }
+  #avaya-speakers-section .avaya-speaker-modal {
+    padding-top: var(--space-2);
+  }
+  #avaya-speakers-section .avaya-speaker-modal img {
+    width: 80px !important;
+  }
 }
 
 /* WIT */
@@ -746,8 +805,11 @@
     position: relative;
     right: auto;
     bottom: auto;
+    width: auto;
     max-width: 80%;
     max-height: none;
+    height: auto;
+    object-fit: initial;
     margin: var(--space-5) auto 0;
   }
 
@@ -995,6 +1057,12 @@
   }
   .section--home .home-slogan {
     max-width: 200px;
+  }
+  /* En teléfonos el hero se veía demasiado grande con el 80% heredado;
+     se reduce para que respire dentro de la columna apilada. */
+  .section--home .home-right__hero-img,
+  .section--home .home-right__hero-img.hero-home {
+    max-width: 60%;
   }
   .section--about .why-attend-img img,
   .section--about .about-img img {
